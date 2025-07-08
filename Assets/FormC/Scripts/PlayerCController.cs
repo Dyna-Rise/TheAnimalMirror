@@ -92,6 +92,9 @@ public class PlayerCController : MonoBehaviour
             // 歩かせない
             isMoving = false;
 
+            // いったん重力オン
+            rbody.useGravity = true;
+
             // ホバリング可能時間内
             if (isHovering)
             {
@@ -99,7 +102,6 @@ public class PlayerCController : MonoBehaviour
                 if (Time.time - startHoverTime > hoverTime + hoveringWaitTime)
                 {
                     //Debug.Log("ホバリング終了");
-                    rbody.useGravity = true;
                     isUpper = false;
                     isHovering = false;
                 }
@@ -119,17 +121,16 @@ public class PlayerCController : MonoBehaviour
                     else
                     {
                         //Debug.Log("ホバリング中断");
-                        rbody.useGravity = true;
                         isUpper = false;
                     }
                 }
             }
-        }
 
-        // ゆっくり落とす?
-        if (rbody.velocity.y < -1f)
-        {
-            rbody.velocity = new Vector3(rbody.velocity.x, -1f, rbody.velocity.z);
+            // ゆっくり落とす?
+            if (rbody.velocity.y < -5f)
+            {
+                rbody.velocity = new Vector3(rbody.velocity.x, -5f, rbody.velocity.z);
+            }
         }
     }
 
