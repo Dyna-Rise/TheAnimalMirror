@@ -1910,11 +1910,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a548e142df2edaa4c9d3023a4b79c834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  moveSpeed: 4
   turnSpeed: 3
-  jumpStrength: 10
-  hoverTime: 5
-  maxUpperPos: 5
+  jumpSpeed: 4
+  maxUpperPos: 3
+  hoverTime: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -1930,7 +1930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5d591b1015a5a47926a1b7d5a7e06a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  returnTime: 20
+  returnTime: 200
   playerChange: {fileID: 317778089}
   isCountDown: 0
 --- !u!114 &4127549260273309755

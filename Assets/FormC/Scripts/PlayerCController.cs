@@ -9,7 +9,7 @@ public class PlayerCController : MonoBehaviour
 {
     const KeyCode jumpKey = KeyCode.Space; // ジャンプキー
 
-    public float moveSpeed = 6; // 移動速度
+    public float moveSpeed = 4; // 移動速度
     public float turnSpeed = 3; // 旋回速度
     bool isMoving; // 移動中フラグ
 
@@ -17,13 +17,13 @@ public class PlayerCController : MonoBehaviour
     float maxJumpHeight; // ジャンプ時の最高点
     bool isJumping; // ジャンプ開始フラグ
 
-    public float hoverTime = 1.5f; // ホバリング可能時間
+    public float maxUpperPos = 3; // 最大Y上昇幅
+    float currentYPos; // ジャンプ前のY座標
+
+    public float hoverTime = 2; // ホバリング可能時間
     float startHoverTime; // ホバリング開始時間
     float hoveringWaitTime = 0.5f; // ホバリング移行待ち時間
     bool isHovering; // ホバリング開始フラグ
-
-    public float maxUpperPos = 6; // 最大Y上昇幅
-    //float currentYPos; // ジャンプ中のY座標
     bool isUpper; // 上昇中フラグ
 
     public LayerMask groundLayer; // 接地判定対象レイヤー
@@ -79,6 +79,9 @@ public class PlayerCController : MonoBehaviour
                 // ジャンプ開始
                 isJumping = true;
 
+                // ジャンプ前の高さを保存
+                currentYPos =　transform.position.y;
+
                 // ある程度地面から離れてからホバリング
                 Invoke("StartHovering", hoveringWaitTime);
             }
@@ -86,45 +89,47 @@ public class PlayerCController : MonoBehaviour
         // 空中
         else
         {
-            // ホバリング中
+            // 歩かせない
+            isMoving = false;
+
+            // ホバリング可能時間内
             if (isHovering)
             {
                 // ホバリング可能時間を過ぎたらホバリング終了
                 if (Time.time - startHoverTime > hoverTime + hoveringWaitTime)
                 {
-                    isHovering = false;
+                    //Debug.Log("ホバリング終了");
                     rbody.useGravity = true;
+                    isUpper = false;
+                    isHovering = false;
                 }
-            }
-
-            // ホバリング指示があったとき
-            if (Input.GetKey(jumpKey))
-            {
-                // とりあえず羽ばたく
-                isUpper = true;
-
-                // ホバリングしていいときはゆっくり上昇
-                if (isHovering && transform.position.y < maxJumpHeight + maxUpperPos)
-                {
-                    rbody.useGravity = false;
-                    rbody.velocity = new Vector3(rbody.velocity.x, Mathf.Abs(rbody.velocity.y) * 1.005f, rbody.velocity.z);
-                }
-                // ホバリングできないときはゆっくり下降
                 else
                 {
-                    rbody.useGravity = true;
-                    if (rbody.velocity.y < 0.5f)
+                    // 上昇するとき
+                    if (Input.GetKey(jumpKey))
                     {
-                        rbody.velocity = new Vector3(rbody.velocity.x, -0.5f, rbody.velocity.z);
+                        // 高さが制限内ならゆっくり上昇
+                        //Debug.Log("ホバリング中");
+                        rbody.useGravity = false;
+                        float y = transform.position.y < currentYPos + maxJumpHeight + maxUpperPos ? Mathf.Abs(rbody.velocity.y) * 1.005f : 0;
+                        rbody.velocity = new Vector3(rbody.velocity.x, y, rbody.velocity.z);
+                        isUpper = true;
+                    }
+                    // キーが離されたらホバリングをやめる
+                    else
+                    {
+                        //Debug.Log("ホバリング中断");
+                        rbody.useGravity = true;
+                        isUpper = false;
                     }
                 }
             }
-            // キーが離されたらホバリングをやめる
-            else
-            {
-                rbody.useGravity = true;
-                isUpper = false;
-            }
+        }
+
+        // ゆっくり落とす?
+        if (rbody.velocity.y < -1f)
+        {
+            rbody.velocity = new Vector3(rbody.velocity.x, -1f, rbody.velocity.z);
         }
     }
 
@@ -133,15 +138,8 @@ public class PlayerCController : MonoBehaviour
         // 接地中か判定
         isGrounded = Physics.Raycast(transform.position + Vector3.up * 0.2f, Vector3.down, 0.4f);
 
-        // 接地中
-        if (isGrounded)
-        {
-            // ジャンプアニメ切り替え
-            anime.SetBool("jump", false);
-
-            // 移動中アニメ切り替え
-            anime.SetBool("move", isMoving);
-        }
+        // 移動中アニメ切り替え
+        anime.SetBool("move", isMoving);
 
         // ジャンプ開始
         if (isJumping)
