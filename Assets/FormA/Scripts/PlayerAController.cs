@@ -73,7 +73,7 @@ public class PlayerAController : MonoBehaviour
 
         if (GameController.gameState == GameState.attack)
         {
-            rbody.AddForce(new Vector3(move.x,0, move.z)*tackleForce
+            rbody.AddForce(transform.forward * tackleForce
 , ForceMode.Impulse);
         }
     }
