@@ -147,6 +147,7 @@ public class EnemyAController : MonoBehaviour
 
         yield return new WaitForSeconds(AtkInterval);
         isTackle = false;
+        agent.isStopped = false;
 
 
     }
