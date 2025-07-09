@@ -36,56 +36,57 @@ public class EnemyBController : MonoBehaviour
 
         if (distance < detectRadius)
         {
+            //Debug.Log("距離が近い");
             // 逃走中でなければストップ
             if (!isEscaping)
             {
-                agent.isStopped = true;
                 stopTimer += Time.deltaTime;
+                if (stopTimer < stopTime) return;
+                //Debug.Log("時間経過");
 
-                if (stopTimer >= stopTime)
-                {
-                    isEscaping = true;
-                    stopTimer = 0f;
-                    agent.isStopped = false; // 逃走開始！
+                //脱出開始
+                isEscaping = true;
+                stopTimer = 0f;
 
-                    // 消える演出
-                    if (enemyHidden != null)
-                        enemyHidden.HideEnemy();
+                // 消える演出
+                if (enemyHidden != null)
+                    enemyHidden.HideEnemy();
 
-                    EscapeFromPlayer(player);
-                }
+                EscapeFromPlayer(player);
             }
-            else
-            {
-                // 逃走中だけ動く
-                agent.isStopped = false;
-                if (agent.remainingDistance < 0.5f)   
-                {
-                    Debug.Log("到着");
-                    isEscaping = false;
-                    agent.isStopped = true; // ゴールしたらまた停止！
-                }
-            }
+
         }
         else
         {
-            // プレイヤーがいない時は完全停止・タイマーリセット
-            isEscaping = false;
+            // 遠い場合はタイマーリセット
             stopTimer = 0f;
-            agent.isStopped = true;
+        }
+
+        if (isEscaping)
+        {
+            //Debug.Log("発動中");
+            if (agent.remainingDistance < 0.5f)
+            {
+                //Debug.Log("到着");
+                isEscaping = false;
+                agent.isStopped = true; // ゴールしたらまた停止！
+            }
         }
     }
 
     void EscapeFromPlayer(Transform player)
     {
+        //Debug.Log("発動");
+
         Vector3 dirFromPlayer = (transform.position - player.position).normalized;
-        dirFromPlayer.y = 0f;
+        //dirFromPlayer.y = 0f;
         Vector3 escapePos = transform.position + dirFromPlayer * moveRadius;
         NavMeshHit hit;
         if (NavMesh.SamplePosition(escapePos, out hit, moveRadius, NavMesh.AllAreas))
         {
+            agent.isStopped = false; // ← これを忘れない！
             agent.SetDestination(hit.position);
-            Debug.Log(hit.position);
+            //Debug.Log(hit.position);
         }
     }
 }
