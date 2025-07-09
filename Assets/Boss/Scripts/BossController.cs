@@ -239,8 +239,8 @@ public class BossController : MonoBehaviour
         anime.SetBool("dash",true);
 
         // 前方に突進！
-        float dashSpeed = 15f;
-        float dashTime = 1.2f;
+        float dashSpeed = 18f;
+        float dashTime = 2.0f;
         float elapsed = 0f;
 
         while (elapsed < dashTime)
