@@ -1184,6 +1184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carrotPrefab: {fileID: 4494474486738189415, guid: 5eb59323fc2eb594892e0a68a9a916e5, type: 3}
   shootSpeed: 0
+  playerD: {fileID: 96891625378596971}
 --- !u!1 &6311363778620904151
 GameObject:
   m_ObjectHideFlags: 0

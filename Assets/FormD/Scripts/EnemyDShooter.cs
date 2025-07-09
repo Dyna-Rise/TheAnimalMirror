@@ -5,15 +5,16 @@ using UnityEngine;
 public class EnemyDShooter : MonoBehaviour
 {
     const int MaxShootStock = 5;
-    const int RecoverySeconds = 1; // 回復時間定数
+    const int RecoverySeconds = 3; // 回復時間定数
 
     int currentShootStock = MaxShootStock;
+    //AudioSource shotSound;
 
     public GameObject carrotPrefab; // Carrotプレハブ
     public float shootSpeed;
 
-    GameObject parentObj;
-    PlayerDController playerDController;
+    public GameObject enemyD;
+    EnemyDController enemyDController;
     Animator anime;
     public EnemyDSearch enemyDSearch;
 
@@ -22,9 +23,8 @@ public class EnemyDShooter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        parentObj = transform.parent.gameObject;
-        playerDController = parentObj.GetComponent<PlayerDController>();
-        anime = parentObj.GetComponent<Animator>();
+        enemyDController = enemyD.GetComponent<EnemyDController>();
+        anime = enemyD.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,12 +32,12 @@ public class EnemyDShooter : MonoBehaviour
     {
         if (GameController.gameState != GameState.playing) return;
 
-        if (enemyDSearch.IsAttack()) ShootStart();
+        //if (enemyDSearch.IsAttack()) ShootAttack();
     }
 
-    public void ShootStart()
+    public void ShootAttack()
     {
-        //if (enemyDSearch.IsAttack()) return;
+        // 残弾数がなくて攻撃中ならシュートしない
         if (currentShootStock <= 0 || inAttack) return;
 
         anime.SetTrigger("attack");
@@ -66,15 +66,15 @@ public class EnemyDShooter : MonoBehaviour
     {
         // currentShootStockを消費すると同時に回復のカウントをスタート
         inAttack = true;
-        StartCoroutine(ShootAttack());
+        StartCoroutine(ShootStart());
 
         currentShootStock--;
         StartCoroutine(ShootStockRecovery());
     }
 
-    IEnumerator ShootAttack()
+    IEnumerator ShootStart()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2.5f);
         inAttack = false;
     }
 

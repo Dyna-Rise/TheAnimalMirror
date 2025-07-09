@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1092076074229321103}
   - component: {fileID: 7014930774494633229}
   m_Layer: 7
-  m_Name: Carrot
+  m_Name: PlayerCarrot
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

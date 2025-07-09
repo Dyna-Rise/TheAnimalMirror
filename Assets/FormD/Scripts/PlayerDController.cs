@@ -18,8 +18,6 @@ public class PlayerDController : MonoBehaviour
 
     public bool isDamage = false;
 
-    bool isDeadAnime;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -30,15 +28,7 @@ public class PlayerDController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameController.gameState != GameState.playing)
-        {
-            if (GameController.gameState == GameState.gameover && !isDeadAnime)
-            {
-                anime.SetTrigger("GameOver");
-                isDeadAnime = true;
-            }
-            return;
-        }
+        if (GameController.gameState != GameState.playing) return;
 
         if (isDamage) return;
 

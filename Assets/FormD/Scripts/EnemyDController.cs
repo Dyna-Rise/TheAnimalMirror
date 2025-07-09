@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyDCntroller : MonoBehaviour
+public class EnemyDController : MonoBehaviour
 {
     private NavMeshAgent agent;
 
@@ -10,18 +10,16 @@ public class EnemyDCntroller : MonoBehaviour
 
     bool isMove;
 
+    public float searchDistance;
+    bool inSearch;
+    public EnemyDShooter enemyDShooter;
     Animator anime;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
 
-        if (agent == null)
-        {
-            Debug.LogError("NavMeshAgentが見つかりません！");
-            enabled = false;
-            return;
-        }
+        if (agent == null) return;
 
         InvokeRepeating("Wander", 0, 5f); // 5秒ごとにランダム移動
 
@@ -42,6 +40,20 @@ public class EnemyDCntroller : MonoBehaviour
             isMove = true;
         }
 
+        if (distance <= searchDistance)
+        {
+            agent.isStopped = true;
+
+            if (!inSearch)
+            {
+                StartCoroutine(Search(player));
+            }
+        }
+        else
+        {
+            agent.isStopped = false;
+        }
+
         bool isMoving = agent.velocity.sqrMagnitude > 0.01f; // わずかに動いてる場合もtrue、それ以外はfalse
         anime.SetBool("move", isMoving);
     }
@@ -59,5 +71,33 @@ public class EnemyDCntroller : MonoBehaviour
                 agent.SetDestination(hit.position);
             }
         }
+    }
+
+    IEnumerator Search(Transform player)
+    {
+        inSearch = true;
+
+        // プレイヤー方向のベクトル（XZ平面のみ）
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0f; // 上下方向は無視して水平だけ向く
+
+        // 向きを決める
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        float duration = 0.25f; // 回転にかける時間
+        float elapsed = 0f;
+
+        //一定時間かけて線形補間でなめらかにPlayerを見る
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, t);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        enemyDShooter.ShootAttack();
+        yield return new WaitForSeconds(2.5f);
+        inSearch = false;
     }
 }

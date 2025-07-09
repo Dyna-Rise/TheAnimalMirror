@@ -13,7 +13,7 @@ public class PlayerDShooter : MonoBehaviour
     public GameObject carrotPrefab; // Carrotプレハブ
     public float shootSpeed;
 
-    GameObject parentObj;
+    public GameObject playerD;
     PlayerDController playerDController;
     Animator anime;
 
@@ -22,9 +22,8 @@ public class PlayerDShooter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        parentObj = transform.parent.gameObject;
-        playerDController = parentObj.GetComponent<PlayerDController>();
-        anime = parentObj.GetComponent<Animator>();
+        playerDController = playerD.GetComponent<PlayerDController>();
+        anime = playerD.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -34,14 +33,14 @@ public class PlayerDShooter : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) // もしも左クリックが押されたら
         {
-            ShootStart(); // シュートメソッド
+            if (playerDController.IsGrounded()) ShootAttack(); // シュートメソッド
         }
     }
 
-    public void ShootStart()
+    void ShootAttack()
     {
         // 残弾数がなくて攻撃中ならシュートしない
-        if (currentShootStock <= 0 || inAttack || !playerDController.IsGrounded()) return;
+        if (currentShootStock <= 0 || inAttack) return;
 
         anime.SetTrigger("attack");
 
@@ -80,13 +79,13 @@ public class PlayerDShooter : MonoBehaviour
     {
         // currentShootStockを消費すると同時に回復のカウントをスタート
         inAttack = true;
-        StartCoroutine(ShootAttack());
+        StartCoroutine(ShootStart());
 
         currentShootStock--;
         StartCoroutine(ShootStockRecovery());
     }
 
-    IEnumerator ShootAttack()
+    IEnumerator ShootStart()
     {
         yield return new WaitForSeconds(0.5f);
         inAttack = false;

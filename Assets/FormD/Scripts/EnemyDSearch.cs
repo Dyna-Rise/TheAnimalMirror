@@ -5,25 +5,22 @@ using UnityEngine.AI;
 
 public class EnemyDSearch : MonoBehaviour
 {
-    bool isAttack;
+    public GameObject enemyD;
+    NavMeshAgent navMeshAgent;
+
+    bool isAttack; // 攻撃するかどうかのフラグ
 
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        navMeshAgent = enemyD.GetComponent<NavMeshAgent>();
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            transform.parent.gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+            navMeshAgent.isStopped = true;
             isAttack = true;
         }
     }
@@ -32,7 +29,7 @@ public class EnemyDSearch : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            transform.parent.LookAt(other.transform.position);
+            enemyD.transform.LookAt(other.transform.position);
         }
     }
 
@@ -40,7 +37,7 @@ public class EnemyDSearch : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            transform.parent.gameObject.GetComponent<NavMeshAgent>().isStopped = false;
+            navMeshAgent.isStopped = false;
             isAttack = false;
         }
     }
