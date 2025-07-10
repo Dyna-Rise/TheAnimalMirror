@@ -83,7 +83,8 @@ sysinfo.txt
 *.jar
 *.java
 *.js
-# *.mat
+#*.mat
+
 *.obj
 *.opendb
 *.prefs
