@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3460286443435921287}
   - component: {fileID: 5024349919628828814}
   - component: {fileID: 2441623790494754154}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: ' leaves (1)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5fc88025bac19f44187e3ae0509fe707, type: 2}
+  - {fileID: 2100000, guid: b5a1aa898c470084398cad569c2ae463, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,11 +95,10 @@ GameObject:
   - component: {fileID: 4041242758876120385}
   - component: {fileID: 636427440497276003}
   - component: {fileID: 1092076074229321103}
-  - component: {fileID: 7960722853228333314}
   - component: {fileID: 7014930774494633229}
-  m_Layer: 7
-  m_Name: Carrot
-  m_TagString: PlayerBullet
+  m_Layer: 9
+  m_Name: EnemyCarrot
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +149,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f48ed4000432ba54a863e75737427159, type: 2}
+  - {fileID: 2100000, guid: 96d5833ba0958674696b1d580c2bca6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -195,18 +194,6 @@ CapsuleCollider:
   m_Height: 3.8128161
   m_Direction: 1
   m_Center: {x: -0.00000024855981, y: 0.48639718, z: -0.01819886}
---- !u!114 &7960722853228333314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4494474486738189415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14aeab699dac2dd41af1f7b05cd901e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &7014930774494633229
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -245,7 +232,7 @@ GameObject:
   - component: {fileID: 4855671234284760500}
   - component: {fileID: 928379063446775640}
   - component: {fileID: 3488737690025671237}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: ' leaves (2)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +282,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5fc88025bac19f44187e3ae0509fe707, type: 2}
+  - {fileID: 2100000, guid: b5a1aa898c470084398cad569c2ae463, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -328,7 +315,7 @@ GameObject:
   - component: {fileID: 8114233712779591483}
   - component: {fileID: 2630868403786295030}
   - component: {fileID: 9090761278044878830}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: ' leaves'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +365,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5fc88025bac19f44187e3ae0509fe707, type: 2}
+  - {fileID: 2100000, guid: b5a1aa898c470084398cad569c2ae463, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
