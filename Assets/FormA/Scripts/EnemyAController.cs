@@ -47,45 +47,47 @@ public class EnemyAController : MonoBehaviour
 
     void Update()
     {
-        //プレイヤー探索
-        Transform player = PlayersManager.Instance.GetPlayer();
-        if (player == null) return;
-
-        float distance = Vector3.Distance(transform.position, player.position);
-
-        if (agent.isOnNavMesh && !isMove)
+        if (GameController.gameState == GameState.playing || GameController.gameState == GameState.attack)
         {
-            agent.isStopped = false;
-            isMove = true;
-        }
+            //プレイヤー探索
+            Transform player = PlayersManager.Instance.GetPlayer();
+            if (player == null) return;
 
-        if (agent.velocity != Vector3.zero)
-        {
-            animator.SetBool("move", true);
-        }
-        else
-        {
-            animator.SetBool("move", false);
-        }
+            float distance = Vector3.Distance(transform.position, player.position);
 
-        if (distance <= activeDis)
-        {
-            Debug.Log("攻撃範囲内");
-            agent.isStopped = true;
-            if (!isTackle)
+            if (agent.isOnNavMesh && !isMove)
             {
-                //InvokeRepeating("EnemyTackle", 0, 3f);
-                StartCoroutine(EnemyTackle());
+                agent.isStopped = false;
+                isMove = true;
+            }
+
+            if (agent.velocity != Vector3.zero)
+            {
+                animator.SetBool("move", true);
+            }
+            else
+            {
+                animator.SetBool("move", false);
+            }
+
+            if (distance <= activeDis)
+            {
+                Debug.Log("攻撃範囲内");
+                agent.isStopped = true;
+                if (!isTackle)
+                {
+                    //InvokeRepeating("EnemyTackle", 0, 3f);
+                    StartCoroutine(EnemyTackle());
+
+
+                }
 
 
             }
 
 
+
         }
-
-
-
-
     }
 
     void Wander()

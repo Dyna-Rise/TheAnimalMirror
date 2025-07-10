@@ -31,7 +31,7 @@ public static class AudioSourceExtensions
     }
 
 
-    public static IEnumerator PlayWithFadeIn(this AudioSource audioSource, AudioClip audioClip, float fadeTime = 0.1f, float endVolume = 1.0f)
+    public static IEnumerator PlayWithFadeIn(this AudioSource audioSource, AudioClip audioClip, float fadeTime = 1.0f, float endVolume = 0.5f)
     {
         //目標ボリュームを0から1に補正//
         float targetVolume = Mathf.Clamp01(endVolume);
