@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class PauseController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SceneManager.sceneUnloaded += SceneUnloaded;
+
         cam = Camera.main;
         //cameraTransform = cam.transform;
         //defaultCameraPos = cameraTransform.position;
@@ -96,6 +99,14 @@ public class PauseController : MonoBehaviour
 
         pausePanel.SetActive(false);
         inPause = false;
+    }
+
+    void SceneUnloaded(Scene scene)
+    {
+        if (Time.timeScale != 1.0f)
+        {
+            Time.timeScale = 1.0f;
+        }
     }
 
     public void SliderChangedX()
