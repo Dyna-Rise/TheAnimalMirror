@@ -12,7 +12,7 @@ public class PlayerChange : MonoBehaviour
     public PlayerSEPlay playerSePlay;
 
     EnemyType enemyType; //TriggerJudgeクラス経由で獲得した敵のFormタイプ
-    PlayerForm playerForm; //enemyTypeにあわせたプレイヤーのForm
+    public PlayerForm playerForm; //enemyTypeにあわせたプレイヤーのForm
 
     void Start()
     {

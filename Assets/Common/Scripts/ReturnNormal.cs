@@ -26,7 +26,8 @@ public class ReturnNormal : MonoBehaviour
         {
             isCountDown = false;
             currentTime = returnTime;
-            playerChange.ChangeForm(PlayerForm.Normal);
+            playerChange.playerForm = PlayerForm.Normal;
+            playerChange.ChangeForm(playerChange.playerForm);
             playerSePlay.PlaySe("kaijyo");
             GameController.isPlayerHide = false;
         }
