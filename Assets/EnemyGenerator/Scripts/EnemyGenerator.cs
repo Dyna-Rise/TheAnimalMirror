@@ -4,10 +4,14 @@ using UnityEngine;
 public class EnemyGenerator : MonoBehaviour
 {
     public float detectRadius = 10f;
-    public int targetType = 0; // 検索したいタイプ
+    public EnemyType targetType = EnemyType.TypeB; // 検索したいタイプ
     public int targetEnemyId = 1; // 検索したいEnemyId
     public GameObject enemyPrefab;
     public LayerMask enemyLayer; // Enemy用レイヤーを指定
+
+    public GameObject spawnEffectPrefab; //生成時エフェクト
+    public AudioClip spawnSE;   // 生成時SE
+    public AudioSource audioSource; // 再生用AudioSource
 
     void Start()
     {
@@ -35,7 +39,7 @@ public class EnemyGenerator : MonoBehaviour
             EnemyInfo info = hit.GetComponent<EnemyInfo>();
             if (info != null)
             {
-                if ((int)info.enemyType == targetType && info.enemyId == targetEnemyId)
+                if (info.enemyType == targetType && info.enemyId == targetEnemyId)
                 {
                     found = true;
                     break;
@@ -47,12 +51,32 @@ public class EnemyGenerator : MonoBehaviour
         {
             // 敵を生成
             GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+
+            // SEを再生
+            if (spawnSE != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(spawnSE);
+            }
+
+            // エフェクトを生成
+            if (spawnEffectPrefab != null)
+            {
+                GameObject fx = Instantiate(
+    　　　　　　spawnEffectPrefab,
+    　　　　　　transform.position,
+    　　　　　　spawnEffectPrefab.transform.rotation );
+                Destroy(fx, 1.5f);
+            }
+
+
             EnemyInfo info = enemy.GetComponent<EnemyInfo>();
             if (info != null)
             {
-                info.enemyType = (EnemyType)targetType;
+                info.enemyType = targetType;
                 info.enemyId = targetEnemyId;
             }
+
+
         }
 
         yield return null;
