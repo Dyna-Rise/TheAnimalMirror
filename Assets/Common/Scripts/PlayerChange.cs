@@ -10,7 +10,7 @@ public class PlayerChange : MonoBehaviour
     public GameObject transformEffect; //変身時に使うエフェクト
 
     EnemyType enemyType; //TriggerJudgeクラス経由で獲得した敵のFormタイプ
-    PlayerForm playerForm; //enemyTypeにあわせたプレイヤーのForm
+    public PlayerForm playerForm; //enemyTypeにあわせたプレイヤーのForm
 
     void Start()
     {
