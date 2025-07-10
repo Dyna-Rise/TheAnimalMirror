@@ -56,7 +56,7 @@ public class UIController : MonoBehaviour
     private void FixedUpdate()
     {
         // c‚èŠÔ‚ğXV
-        if (currentTime != timeController.remainingTime || timeText == null)
+        if (currentTime != timeController.remainingTime)
         {
             currentTime = timeController.remainingTime;
             timeText.text = Mathf.Ceil(currentTime).ToString();
