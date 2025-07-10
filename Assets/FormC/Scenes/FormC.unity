@@ -307,10 +307,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveRadius: 5
-  sensingRange: 8
-  damageObj: {fileID: 4279167132130474988, guid: 779f0d175e4939b41ae8d023ace7ebc1, type: 3}
-  dropCount: 3
-  dropRange: 5
+  sensingRange: 6
+  dropObj: {fileID: 4279167132130474988, guid: 779f0d175e4939b41ae8d023ace7ebc1, type: 3}
+  dropCount: 4
+  scatterPower: 3
   attackJumpHeight: 7
 --- !u!114 &291833366
 MonoBehaviour:
@@ -367,6 +367,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8881504610387854135, guid: 6b0b0b098177a3b439c80991ec9deacc, type: 3}
   m_PrefabInstance: {fileID: 432056990}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &291833383
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291833364}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!1001 &317778088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -758,6 +779,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8073443194988779917, guid: 6b0b0b098177a3b439c80991ec9deacc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 291833373}
+    - targetCorrespondingSourceObject: {fileID: 8073443194988779917, guid: 6b0b0b098177a3b439c80991ec9deacc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 291833383}
   m_SourcePrefab: {fileID: 100100000, guid: 6b0b0b098177a3b439c80991ec9deacc, type: 3}
 --- !u!1 &448018302
 GameObject:
@@ -1482,13 +1506,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1352332505}
   - component: {fileID: 1352332506}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: DamageArea
-  m_TagString: Untagged
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1352332505
 Transform:
   m_ObjectHideFlags: 0
@@ -1519,12 +1543,12 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.15
-  m_Center: {x: 0, y: 0.2, z: 0.05}
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!1 &1847473870
 GameObject:
   m_ObjectHideFlags: 0
