@@ -32,73 +32,6 @@ Transform:
   - {fileID: 4842685277661002099}
   m_Father: {fileID: 1704521086930430790}
   m_LocalEulerAnglesHint: {x: -46.816185, y: -177.36589, z: 172.56581}
---- !u!1 &142908344939077184
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7452782005006690093}
-  - component: {fileID: 6938945767400484478}
-  - component: {fileID: 5093824148869386343}
-  m_Layer: 8
-  m_Name: EnemyDSearch
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &7452782005006690093
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142908344939077184}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9045674636014482790}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &6938945767400484478
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142908344939077184}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 8
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5093824148869386343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142908344939077184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf2f547ce0e954146a2208e53d795511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyD: {fileID: 2972976945755053922}
 --- !u!1 &355180190447346338
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +425,6 @@ Transform:
   - {fileID: 5409542513879201364}
   - {fileID: 4580071332530177183}
   - {fileID: 2657770702617587051}
-  - {fileID: 7452782005006690093}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8145642383337336603
@@ -1082,7 +1014,6 @@ MonoBehaviour:
   carrotPrefab: {fileID: 4494474486738189415, guid: 0b13c2f84860c444fb9fd6b7be7d3235, type: 3}
   shootSpeed: 10
   enemyD: {fileID: 2972976945755053922}
-  enemyDSearch: {fileID: 5093824148869386343}
 --- !u!1 &4614292618047657043
 GameObject:
   m_ObjectHideFlags: 0
