@@ -70,17 +70,6 @@ public class PlayerDShooter : MonoBehaviour
         //shotSound.Play();
     }
 
-    //void OnGUI()
-    //{
-    //    GUI.color = Color.black;
-
-    //    // ShotPowerの残数を+の数で表示
-    //    string label = "";
-    //    for (int i = 0; i < currentShootStock; i++) label = label + "+";
-
-    //    GUI.Label(new Rect(50, 65, 100, 30), label);
-    //}
-
     void ConsumePower()
     {
         // currentShootStockを消費すると同時に回復のカウントをスタート

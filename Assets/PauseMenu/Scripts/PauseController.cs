@@ -10,8 +10,6 @@ public class PauseController : MonoBehaviour
     GameState preGameState;
 
     Camera cam;
-    //Transform cameraTransform;
-    //Vector3 defaultCameraPos;
     PlayerFollow playerFollow;
     Vector3 defaultOffset;
     AudioListener audioListener;
@@ -34,8 +32,6 @@ public class PauseController : MonoBehaviour
         SceneManager.sceneUnloaded += SceneUnloaded;
 
         cam = Camera.main;
-        //cameraTransform = cam.transform;
-        //defaultCameraPos = cameraTransform.position;
         playerFollow = cam.gameObject.GetComponent<PlayerFollow>();
         defaultOffset = playerFollow.offset;
         audioListener = cam.gameObject.GetComponent<AudioListener>();
@@ -74,7 +70,6 @@ public class PauseController : MonoBehaviour
         if (isChanged)
         {
             Vector3 newOffset = new Vector3(sliderValue[0], sliderValue[1], sliderValue[2]);
-            //cameraTransform.position = defaultCameraPos + newOffset;
             playerFollow.offset = defaultOffset + newOffset;
             isChanged = false;
         }

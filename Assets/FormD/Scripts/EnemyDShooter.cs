@@ -14,16 +14,13 @@ public class EnemyDShooter : MonoBehaviour
     public float shootSpeed;
 
     public GameObject enemyD;
-    EnemyDController enemyDController;
     Animator anime;
-    public EnemyDSearch enemyDSearch;
 
     bool inAttack; // 攻撃中かどうかのフラグ
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyDController = enemyD.GetComponent<EnemyDController>();
         anime = enemyD.GetComponent<Animator>();
     }
 
@@ -31,8 +28,6 @@ public class EnemyDShooter : MonoBehaviour
     void Update()
     {
         if (GameController.gameState != GameState.playing) return;
-
-        //if (enemyDSearch.IsAttack()) ShootAttack();
     }
 
     public void ShootAttack()
