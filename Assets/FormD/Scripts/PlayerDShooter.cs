@@ -19,6 +19,12 @@ public class PlayerDShooter : MonoBehaviour
 
     bool inAttack; // 攻撃中かどうかのフラグ
 
+    void OnEnable()
+    {
+        currentShootStock = MaxShootStock;
+        inAttack = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
