@@ -3,7 +3,6 @@ using Unity.VisualScripting;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.PlayerSettings;
 
 // 鶏エネミー
 public class EnemyCCntroller : MonoBehaviour
@@ -68,6 +67,11 @@ public class EnemyCCntroller : MonoBehaviour
 
     void Update()
     {
+        if (GameController.gameState != GameState.playing)
+        {
+            return;
+        }
+
         // AI有効化
         if (agent.isOnNavMesh && !isMove)
         {
@@ -224,6 +228,10 @@ public class EnemyCCntroller : MonoBehaviour
             {
                 // プレイヤー位置取得
                 Transform player = PlayersManager.Instance.GetPlayer();
+                if (player == null)
+                {
+                    yield break;
+                }
 
                 // 上昇中は旋回する
                 diffPos = player.position - transform.position;
