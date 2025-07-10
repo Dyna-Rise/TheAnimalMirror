@@ -31,6 +31,7 @@ public class TriggerJudge : MonoBehaviour
             isApproach = false; //フラグをOFF
             enemyType = EnemyType.None; //列挙型の値をNormalに
         }
-    }
 
+
+    }
 }

@@ -9,8 +9,10 @@ public class PlayerChange : MonoBehaviour
 
     public GameObject transformEffect; //変身時に使うエフェクト
 
+    public PlayerSEPlay playerSePlay;
+
     EnemyType enemyType; //TriggerJudgeクラス経由で獲得した敵のFormタイプ
-    PlayerForm playerForm; //enemyTypeにあわせたプレイヤーのForm
+    public PlayerForm playerForm; //enemyTypeにあわせたプレイヤーのForm
 
     void Start()
     {
@@ -71,7 +73,8 @@ public class PlayerChange : MonoBehaviour
                     }
 
                     //playerForm型の値を引数にメソッド発動して変身
-                    ChangeForm(playerForm); 
+                    ChangeForm(playerForm);
+                    playerSePlay.PlaySe("henshin5");
                 }
                 else
                 {
@@ -100,6 +103,7 @@ public class PlayerChange : MonoBehaviour
             next.transform.position = currentPos;　
 
             next.SetActive(true); //オブジェクトを表示（有効）
+            
 
             currentForm = next; //currentFormに新しく選ばれたオブジェクト情報を格納
 
@@ -131,7 +135,7 @@ public class PlayerChange : MonoBehaviour
     //変身エフェクトのスタート
     IEnumerator TransformEffectStart(GameObject shilhuette)
     {
-        transformEffect.transform.position = shilhuette.transform.position + new Vector3(0,0.6f,0);
+            transformEffect.transform.position = shilhuette.transform.position + new Vector3(0, 0.6f, 0);
         transformEffect.SetActive(true);
         transformEffect.transform.SetParent(shilhuette.transform);
         yield return new WaitForSeconds(0.2f);

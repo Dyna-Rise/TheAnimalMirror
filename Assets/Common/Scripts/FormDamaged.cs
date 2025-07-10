@@ -10,7 +10,8 @@ public class FormDamaged : MonoBehaviour
     {
         if (other.gameObject.CompareTag("EnemyBullet"))
         {
-            playerChange.ChangeForm(PlayerForm.Normal);
+            playerChange.playerForm = PlayerForm.Normal;
+            playerChange.ChangeForm(playerChange.playerForm);
         }
     }
 
@@ -18,7 +19,8 @@ public class FormDamaged : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Dead"))
         {
-            playerChange.ChangeForm(PlayerForm.Normal);
+            playerChange.playerForm = PlayerForm.Normal;
+            playerChange.ChangeForm(playerChange.playerForm);
         }
     }
 
