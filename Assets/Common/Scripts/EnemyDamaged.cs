@@ -6,6 +6,7 @@ public class EnemyDamaged : MonoBehaviour
 {
     public int enemyLife = 3;
     public GameObject enemyModel; // 表示/非表示を切り替える対象
+    public PlayerSEPlay playerSePlay;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -15,7 +16,7 @@ public class EnemyDamaged : MonoBehaviour
             {
                 StartCoroutine(ColliderStop());
             }
-
+            playerSePlay.PlaySePitchRdm("damage_hit");
             enemyLife--;
 
             // 点滅開始

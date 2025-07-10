@@ -8,6 +8,7 @@ public class ReturnNormal : MonoBehaviour
     public PlayerChange playerChange;
     float currentTime;
     public bool isCountDown;
+    public PlayerSEPlay playerSePlay;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class ReturnNormal : MonoBehaviour
             currentTime = returnTime;
             playerChange.playerForm = PlayerForm.Normal;
             playerChange.ChangeForm(playerChange.playerForm);
+            playerSePlay.PlaySe("kaijyo");
             GameController.isPlayerHide = false;
         }
     }

@@ -12,6 +12,8 @@ public class NormalPlayerDamaged : MonoBehaviour
     public NormalPlayerController controller; // Rigidbody版コントローラに変更
     private Rigidbody rb;
 
+    public PlayerSEPlay playerSePlay;
+
     void Start()
     {
         if (controller == null)
@@ -43,6 +45,7 @@ public class NormalPlayerDamaged : MonoBehaviour
 
             GameController.playerLife--;
             //Debug.Log(GameController.playerLife);
+            playerSePlay.PlaySePitchRdm("damage_hit");
 
             if (GameController.playerLife > 0)
                 DamageStart(other.transform);
